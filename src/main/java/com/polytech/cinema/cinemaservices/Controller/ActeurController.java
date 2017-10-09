@@ -14,13 +14,13 @@ import java.util.List;
  * on 10/7/2017.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/acteurs")
 public class ActeurController {
     @Autowired
     ActeurRepository acteurRepository;
 
     // Get All Notes
-    @GetMapping("/acteurs")
+    @GetMapping("")
     public List<Actor> getAllActeurs() {
         return acteurRepository.findAll();
     }
