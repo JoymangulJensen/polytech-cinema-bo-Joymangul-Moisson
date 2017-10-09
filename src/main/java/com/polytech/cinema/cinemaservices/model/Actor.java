@@ -5,7 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Date;
-import java.util.Collection;
 
 /**
  * Created by JOYMANGUL Jensen Selwyn
@@ -18,7 +17,6 @@ public class Actor {
     private Date deathDate;
     private String firstName;
     private String name;
-    private Collection<Character> character;
 
     @Id
     @Column(name = "id")
@@ -69,6 +67,9 @@ public class Actor {
     public void setName(String name) {
         this.name = name;
     }
+
+
+
 
     @Override
     public boolean equals(Object o) {
