@@ -1,7 +1,7 @@
 package com.polytech.cinema.cinemaservices.Controller;
 
 import com.polytech.cinema.cinemaservices.model.Characters;
-import com.polytech.cinema.cinemaservices.repo.CharacterRepository;
+import com.polytech.cinema.cinemaservices.repo.CharactersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ import java.util.List;
 public class CharacterController {
 
     @Autowired
-    CharacterRepository characterRepository;
+    CharactersRepository characterRepository;
 
     // Get All Characters
     @GetMapping("")

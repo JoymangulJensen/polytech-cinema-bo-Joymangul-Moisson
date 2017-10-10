@@ -12,7 +12,7 @@ import java.util.List;
  * on 10/9/2017.
  */
 @Repository
-public interface CharacterRepository extends JpaRepository<Characters, CharacterPK> {
+public interface CharactersRepository extends JpaRepository<Characters, CharacterPK> {
 
     List<Characters> findByIdActor(int id);
 }
