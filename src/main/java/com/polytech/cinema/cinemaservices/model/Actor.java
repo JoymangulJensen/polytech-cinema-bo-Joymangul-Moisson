@@ -1,9 +1,6 @@
 package com.polytech.cinema.cinemaservices.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -20,6 +17,7 @@ public class Actor {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
