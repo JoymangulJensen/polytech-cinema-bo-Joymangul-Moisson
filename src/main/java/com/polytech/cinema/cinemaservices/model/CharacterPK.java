@@ -12,7 +12,7 @@ public class CharacterPK implements Serializable {
     private int idFilm;
     private int idActor;
 
-    @Column(name = "id_film")
+    @Column(name = "idFilm")
     @Id
     public int getIdFilm() {
         return idFilm;
@@ -22,7 +22,7 @@ public class CharacterPK implements Serializable {
         this.idFilm = idFilm;
     }
 
-    @Column(name = "id_actor")
+    @Column(name = "idActor")
     @Id
     public int getIdActor() {
         return idActor;

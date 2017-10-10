@@ -8,7 +8,7 @@ import javax.persistence.*;
  */
 @Entity
 @IdClass(CharacterPK.class)
-public class Character {
+public class Characters {
     private int idFilm;
     private int idActor;
     private String name;
@@ -50,7 +50,7 @@ public class Character {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Character character = (Character) o;
+        Characters character = (Characters) o;
 
         if (idFilm != character.idFilm) return false;
         if (idActor != character.idActor) return false;
@@ -68,7 +68,7 @@ public class Character {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_film", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "idFilm", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
     public Film getFilm() {
         return film;
     }
@@ -78,7 +78,7 @@ public class Character {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_actor", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "idActor", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
     public Actor getActor() {
         return actor;
     }
