@@ -58,15 +58,4 @@ public class ActorController {
         Actor updatedNote = acteurRepository.save(actor);
         return ResponseEntity.ok(updatedNote);
     }
-
-    // Delete an Actor
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteNote(@PathVariable(value = "id") int actorId) {
-        Actor actor = acteurRepository.findOne(actorId);
-        if(actor == null) {
-            return ResponseEntity.notFound().build();
-        }
-        acteurRepository.delete(actor);
-        return ResponseEntity.ok().build();
-    }
 }
