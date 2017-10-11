@@ -1,5 +1,8 @@
 package com.polytech.cinema.cinemaservices.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 /**
@@ -68,6 +71,7 @@ public class Characters {
     }
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "idFilm", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
     public Film getFilm() {
         return film;
@@ -78,6 +82,7 @@ public class Characters {
     }
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "idActor", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
     public Actor getActor() {
         return actor;
