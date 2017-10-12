@@ -29,7 +29,7 @@ public class ActorController {
     //  Get one Actor
     @GetMapping("/{id}")
     public ResponseEntity<Actor> getActorById(@PathVariable(value = "id") int actorId) {
-        Actor actor = acteurRepository.findOne(actorId);
+        Actor actor = acteurRepository.getOne(actorId);
         if(actor == null) {
             return ResponseEntity.notFound().build();
         }
@@ -46,7 +46,8 @@ public class ActorController {
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateNote(@PathVariable(value = "id") int actorId,
                                              @Valid  Actor actorDetails) {
-        Actor actor = acteurRepository.findOne(actorId);
+        System.out.println(actorId);
+        Actor actor = acteurRepository.getOne(actorId);
         if(actor == null) {
             return ResponseEntity.notFound().build();
         }
@@ -55,7 +56,19 @@ public class ActorController {
         actor.setBirthday(actorDetails.getBirthday());
         actor.setDeathDate(actorDetails.getDeathDate());
 
-        Actor updatedNote = acteurRepository.save(actor);
-        return ResponseEntity.ok(updatedNote);
+        Actor updatedActor = acteurRepository.save(actor);
+        return ResponseEntity.ok(updatedActor);
+    }
+
+
+    // Delete an actor
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteNote(@PathVariable(value = "id") int actorId) {
+        Actor actor = acteurRepository.findOne(actorId);
+        if(actor == null) {
+            return ResponseEntity.notFound().build();
+        }
+        acteurRepository.delete(actor);
+        return ResponseEntity.ok().build();
     }
 }
