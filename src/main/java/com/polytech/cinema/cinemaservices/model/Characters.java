@@ -67,7 +67,7 @@ public class Characters {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idFilm", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
     public Film getFilm() {
         return film;
@@ -77,7 +77,7 @@ public class Characters {
         this.film = filmByIdFilm;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idActor", referencedColumnName = "id", insertable = false, updatable = false, nullable = false)
     public Actor getActor() {
         return actor;
