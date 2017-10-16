@@ -1,7 +1,7 @@
 package com.polytech.cinema.cinemaservices.Controller;
 
 import com.polytech.cinema.cinemaservices.model.Actor;
-import com.polytech.cinema.cinemaservices.repo.ActeurRepository;
+import com.polytech.cinema.cinemaservices.repo.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +17,19 @@ import java.util.List;
 @RequestMapping("/actor")
 public class ActorController {
     @Autowired
-    ActeurRepository acteurRepository;
+    ActorRepository actorRepository;
 
     // Get All Actors
     @GetMapping("")
     public List<Actor> getAllActeurs() {
-        return acteurRepository.findAll();
+        return actorRepository.findAll();
     }
 
 
     //  Get one Actor
     @GetMapping("/{id}")
     public ResponseEntity<Actor> getActorById(@PathVariable(value = "id") int actorId) {
-        Actor actor = acteurRepository.getOne(actorId);
+        Actor actor = actorRepository.getOne(actorId);
         if(actor == null) {
             return ResponseEntity.notFound().build();
         }
@@ -39,15 +39,14 @@ public class ActorController {
     // Create a new Actor
     @PostMapping("")
     public Actor createActor(@Valid Actor actor) {
-        return acteurRepository.save(actor);
+        return actorRepository.save(actor);
     }
 
     // Update an Actor
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateNote(@PathVariable(value = "id") int actorId,
                                              @Valid  Actor actorDetails) {
-        System.out.println(actorId);
-        Actor actor = acteurRepository.getOne(actorId);
+        Actor actor = actorRepository.getOne(actorId);
         if(actor == null) {
             return ResponseEntity.notFound().build();
         }
@@ -56,7 +55,7 @@ public class ActorController {
         actor.setBirthday(actorDetails.getBirthday());
         actor.setDeathDate(actorDetails.getDeathDate());
 
-        Actor updatedActor = acteurRepository.save(actor);
+        Actor updatedActor = actorRepository.save(actor);
         return ResponseEntity.ok(updatedActor);
     }
 
@@ -64,11 +63,11 @@ public class ActorController {
     // Delete an actor
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteNote(@PathVariable(value = "id") int actorId) {
-        Actor actor = acteurRepository.findOne(actorId);
+        Actor actor = actorRepository.findOne(actorId);
         if(actor == null) {
             return ResponseEntity.notFound().build();
         }
-        acteurRepository.delete(actor);
+        actorRepository.delete(actor);
         return ResponseEntity.ok().build();
     }
 }
