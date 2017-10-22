@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * on 10/7/2017.
  */
 @Repository
-public interface ActeurRepository extends JpaRepository<Actor, Integer> {
+public interface ActorRepository extends JpaRepository<Actor, Integer> {
 }
