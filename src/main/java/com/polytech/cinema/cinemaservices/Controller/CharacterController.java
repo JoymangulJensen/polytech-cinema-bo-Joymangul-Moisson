@@ -4,11 +4,9 @@ import com.polytech.cinema.cinemaservices.model.Characters;
 import com.polytech.cinema.cinemaservices.repo.CharactersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -16,7 +14,7 @@ import java.util.List;
  * on 10/9/2017.
  */
 @RestController
-@RequestMapping("/characters")
+@RequestMapping("/character")
 public class CharacterController {
 
     @Autowired
@@ -28,14 +26,65 @@ public class CharacterController {
         return characterRepository.findAll();
     }
 
-    // Get all characters for an actor
-    @GetMapping("/actor/{id}")
-    public ResponseEntity<List<Characters>> getCharacterByActor(@PathVariable(value = "id") int characterId) {
-        List<Characters> character = characterRepository.findByIdActor(characterId);
+    // Get one character
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getCharacters(@PathVariable(value = "id") int id) {
+        Characters character = characterRepository.findOne(id);
         if(character == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(character);
     }
 
+    // Get all characters for an actor
+    @GetMapping("/actor/{id}")
+    public ResponseEntity<List<Characters>> getCharacterByActor(@PathVariable(value = "id") int actorId) {
+        List<Characters> character = characterRepository.findByIdActor(actorId);
+        if(character == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(character);
+    }
+
+    // Get all characters for a film
+    @GetMapping("/film/{id}")
+    public ResponseEntity<Object> getCharacterByFilm(@PathVariable(value = "id") int filmId) {
+        List<Characters> character = characterRepository.findByIdFilm(filmId);
+        if(character == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(character);
+    }
+
+    // Create a new Character
+    @PostMapping("")
+    public Characters createCharacter(@Valid Characters character) {
+        return characterRepository.save(character);
+    }
+
+    // Update one character
+    @PutMapping("{id}")
+    public ResponseEntity<Object> update(@PathVariable(value = "id") int id,
+                                             @Valid Characters characterDetails) {
+        Characters character = characterRepository.findOne(id);
+        if(character == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        character.setIdActor(characterDetails.getIdActor());
+        character.setIdFilm(characterDetails.getIdFilm());
+        character.setName(characterDetails.getName());
+        Characters updatedCharacter = characterRepository.save(character);
+        return ResponseEntity.ok(updatedCharacter);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Object> delete(@PathVariable(value = "id") int id) {
+        Characters character = characterRepository.findOne(id);
+        if(character == null) {
+            return ResponseEntity.notFound().build();
+        }
+        characterRepository.delete(character);
+        return ResponseEntity.ok().build();
+    }
 }

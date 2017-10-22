@@ -18,3 +18,20 @@ INSERT INTO director (name, first_name) VALUES
   ('Chabrol', 'Claude'),
   ('Besson', 'Luc'),
   ('Besnard', 'Eric');
+
+INSERT INTO film (title, duration, release_date, budget, grossing, id_director, code_category) VALUES
+  ('Léon', 110, '1994-04-14', 17531000, 69250000, 3, 'PO'),
+  ('Cash', 100, '2008-04-23', 18340000, 60340000, 4, 'PO'),
+  ('La grande vadrouille', 132, '1966-12-01', 7227000, 51258000, 2, 'AC'),
+  ('Subway', 104, '1985-04-10', 10567000, 70500000, 3, 'PO');
+
+INSERT INTO characters (id_film, id_actor, name) VALUES
+  (1, 1, 'Léon'),
+  (1, 2, 'Mathilda'),
+  (2, 1, 'Maxime Dubreuil'),
+  (2, 3, 'Cash'),
+  (3, 4, 'Augustin Bouvet'),
+  (3, 5, 'Stanislas Lefort'),
+  (4, 1, 'Le Batteur'),
+  (4, 6, 'Le Roller'),
+  (4, 7, 'Fred');

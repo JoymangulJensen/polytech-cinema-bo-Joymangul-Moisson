@@ -107,7 +107,7 @@ public class Film {
         return result;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_director", referencedColumnName = "id")
     public Director getDirector() {
         return director;
@@ -117,7 +117,7 @@ public class Film {
         this.director = directorByIdDirector;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "code_category", referencedColumnName = "code")
     public Category getCategory() {
         return category;

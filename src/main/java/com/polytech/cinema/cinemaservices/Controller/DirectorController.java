@@ -1,7 +1,9 @@
 package com.polytech.cinema.cinemaservices.Controller;
 
 import com.polytech.cinema.cinemaservices.model.Director;
+import com.polytech.cinema.cinemaservices.model.Film;
 import com.polytech.cinema.cinemaservices.repo.DirectorRepository;
+import com.polytech.cinema.cinemaservices.repo.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,15 +22,18 @@ public class DirectorController {
     @Autowired
     DirectorRepository directorRepository;
 
+    @Autowired
+    FilmRepository filmRepository;
+
     // Get all Directors
     @GetMapping("")
-    public List<Director> getAllDirectors() {
+    public List<Director> getAll() {
         return directorRepository.findAll();
     }
 
     // Get a Director
     @GetMapping("/{id}")
-    public ResponseEntity<Director> getDirectorById(@PathVariable(value = "id") int directorId) {
+    public ResponseEntity<Director> getById(@PathVariable(value = "id") int directorId) {
         Director director = directorRepository.findOne(directorId);
         if(director == null) {
             return ResponseEntity.notFound().build();
@@ -38,13 +43,13 @@ public class DirectorController {
 
     // Create a new Director
     @PostMapping("")
-    public Director createDirector(@Valid Director director) {
+    public Director create(@Valid Director director) {
         return directorRepository.save(director);
     }
 
     // Update a Director
     @PutMapping("/{id}")
-    public ResponseEntity<Object> updateNote(@PathVariable(value = "id") int directorId,
+    public ResponseEntity<Object> update(@PathVariable(value = "id") int directorId,
                                              @Valid Director directorDetails) {
         Director director = directorRepository.getOne(directorId);
         if(director == null) {
@@ -60,11 +65,19 @@ public class DirectorController {
 
     // Delete a direction
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteNote(@PathVariable(value = "id") int directorId) {
+    public ResponseEntity<Object> delete(@PathVariable(value = "id") int directorId) {
         Director director = directorRepository.findOne(directorId);
         if(director == null) {
             return ResponseEntity.notFound().build();
         }
+
+        // Set all films with the deleted director to null
+        List<Film> films = filmRepository.findByDirector(director);
+        for (Film film: films) {
+            film.setDirector(null);
+            filmRepository.save(film);
+        }
+
         directorRepository.delete(director);
         return ResponseEntity.ok().build();
     }
