@@ -14,6 +14,7 @@ import java.util.List;
  * on 10/9/2017.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/character")
 public class CharacterController {
 

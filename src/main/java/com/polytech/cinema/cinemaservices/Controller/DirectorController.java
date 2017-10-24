@@ -16,6 +16,7 @@ import java.util.List;
  * on 10/16/2017.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/director")
 public class DirectorController {
 

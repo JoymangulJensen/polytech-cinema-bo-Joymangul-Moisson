@@ -16,6 +16,7 @@ import java.util.List;
  * on 10/7/2017.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/actor")
 public class ActorController {
     @Autowired

@@ -20,6 +20,7 @@ import java.util.List;
  * on 10/20/2017.
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/film")
 public class FilmController {
 
