@@ -119,6 +119,6 @@ public class FilmController {
         charactersRepository.delete(characters);
 
         filmRepository.delete(film);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("OK");
     }
 }

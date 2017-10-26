@@ -80,7 +80,7 @@ public class DirectorController {
         }
 
         directorRepository.delete(director);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("OK");
     }
 
 }

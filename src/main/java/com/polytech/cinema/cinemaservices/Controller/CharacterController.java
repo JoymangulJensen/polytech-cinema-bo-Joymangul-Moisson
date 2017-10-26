@@ -86,6 +86,6 @@ public class CharacterController {
             return ResponseEntity.notFound().build();
         }
         characterRepository.delete(character);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("OK");
     }
 }

@@ -79,6 +79,6 @@ public class ActorController {
         charactersRepository.delete(characters);
 
         actorRepository.delete(actor);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("OK");
     }
 }

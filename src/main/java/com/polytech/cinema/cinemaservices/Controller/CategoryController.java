@@ -74,6 +74,6 @@ public class CategoryController {
             filmRepository.save(film);
         }
         categoryRepository.delete(category);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("OK");
     }
 }
