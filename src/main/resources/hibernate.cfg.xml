@@ -9,7 +9,7 @@
     <mapping class="com.polytech.cinema.cinemaservices.model.Actor"/>
     <mapping class="com.polytech.cinema.cinemaservices.model.Category"/>
     <mapping class="com.polytech.cinema.cinemaservices.model.Film"/>
-    <mapping class="com.polytech.cinema.cinemaservices.model.Character"/>
+    <mapping class="com.polytech.cinema.cinemaservices.model.Characters"/>
     <mapping class="com.polytech.cinema.cinemaservices.model.Director"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->

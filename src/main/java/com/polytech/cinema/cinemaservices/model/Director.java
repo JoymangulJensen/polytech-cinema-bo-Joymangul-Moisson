@@ -1,9 +1,6 @@
 package com.polytech.cinema.cinemaservices.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by JOYMANGUL Jensen Selwyn
@@ -17,6 +14,7 @@ public class Director {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
