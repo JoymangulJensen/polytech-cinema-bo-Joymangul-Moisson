@@ -14,4 +14,5 @@ import java.util.List;
 public interface FilmRepository extends JpaRepository<Film, Integer> {
     List<Film> findByCategory(Category category);
     List<Film> findByDirector(Director director);
+    List<Film> findByTitleContaining(String title);
 }

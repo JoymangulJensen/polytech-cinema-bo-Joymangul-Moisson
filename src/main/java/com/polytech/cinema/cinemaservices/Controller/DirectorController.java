@@ -32,6 +32,11 @@ public class DirectorController {
         return directorRepository.findAll();
     }
 
+    @GetMapping("/search")
+    public List<Director> getLikeName(@RequestParam(name = "name") String searchName) {
+        return directorRepository.findByNameContaining(searchName);
+    }
+
     // Get a Director
     @GetMapping("/{id}")
     public ResponseEntity<Director> getById(@PathVariable(value = "id") int directorId) {

@@ -1,6 +1,7 @@
 package com.polytech.cinema.cinemaservices.Controller;
 
 import com.polytech.cinema.cinemaservices.model.Characters;
+import com.polytech.cinema.cinemaservices.model.Film;
 import com.polytech.cinema.cinemaservices.repo.CharactersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,11 @@ public class CharacterController {
     @GetMapping("")
     public List<Characters> getAllCharacters() {
         return characterRepository.findAll();
+    }
+
+    @GetMapping("/search")
+    public List<Characters> getLikeName(@RequestParam(name = "title") String searchName) {
+        return characterRepository.findByNameContaining(searchName);
     }
 
     // Get one character

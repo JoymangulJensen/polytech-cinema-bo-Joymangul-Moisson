@@ -14,4 +14,5 @@ import java.util.List;
 public interface CharactersRepository extends JpaRepository<Characters, Integer> {
     List<Characters> findByIdActor(int id);
     List<Characters> findByIdFilm(int id);
+    List<Characters> findByNameContaining(String name);
 }

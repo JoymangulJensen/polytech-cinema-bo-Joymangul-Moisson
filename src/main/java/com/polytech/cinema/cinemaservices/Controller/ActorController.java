@@ -31,6 +31,10 @@ public class ActorController {
         return actorRepository.findAll();
     }
 
+    @GetMapping("/search")
+    public List<Actor> getLikeName(@RequestParam(name = "title") String searchName) {
+        return actorRepository.findByNameContaining(searchName);
+    }
 
     //  Get one Actor
     @GetMapping("/{id}")

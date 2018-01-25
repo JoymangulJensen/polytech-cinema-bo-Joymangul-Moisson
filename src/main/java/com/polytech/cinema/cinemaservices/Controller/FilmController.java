@@ -9,6 +9,7 @@ import com.polytech.cinema.cinemaservices.repo.CharactersRepository;
 import com.polytech.cinema.cinemaservices.repo.DirectorRepository;
 import com.polytech.cinema.cinemaservices.repo.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +41,11 @@ public class FilmController {
     @GetMapping("")
     public List<Film> getAll() {
         return filmRepository.findAll();
+    }
+
+    @GetMapping("/search")
+    public List<Film> getLikeTitle(@RequestParam(name = "title") String searchName) {
+        return filmRepository.findByTitleContaining(searchName);
     }
 
 
@@ -102,7 +108,7 @@ public class FilmController {
         film.setCategory(FilmDetails.getCategory());
 
         Film updatedFilm = filmRepository.save(film);
-        return ResponseEntity.ok(updatedFilm);
+        return this.getById(updatedFilm.getId());
     }
 
 
